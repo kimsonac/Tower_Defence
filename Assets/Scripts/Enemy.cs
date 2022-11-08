@@ -35,5 +35,14 @@ public class Enemy : MonoBehaviour
                 index++;
             }
         }
+
+        // 목적지 도착이므로 사라짐
+        // 금화 --
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        // 3번 닿으면 사라짐
+        // 금화
     }
 }
