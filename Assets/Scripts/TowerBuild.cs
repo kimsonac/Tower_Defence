@@ -18,6 +18,10 @@ public class TowerBuild : MonoBehaviour
             valid_Layout.SetActive(true);
         }
 
+        if (gameObject.CompareTag("Unvalid") || isBulit)
+        {
+            unvalid_Layout.SetActive(true);
+        }
         towerLayout.SetActive(true);
     }
 
@@ -34,7 +38,7 @@ public class TowerBuild : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!isBulit)
+        if (!isBulit && gameObject.CompareTag("Valid"))
         {
             isBulit = true;
             towerLayout.SetActive(false);
