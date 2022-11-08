@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     private Vector3 next;
     private int index;
 
-    private void Awake()
+    private void OnEnable()
     {
         agent = GetComponent<NavMeshAgent>();
         transform.position = startPosition.position;
@@ -30,12 +30,9 @@ public class Enemy : MonoBehaviour
             next = new Vector3(destinations[index].position.x, 0, destinations[index].position.z);
             agent.SetDestination(destinations[index].position);
 
-            if(agent.remainingDistance <= agent.stoppingDistance)
+            if(Vector3.Distance(transform.position, destinations[index].position) <= 0.1f)
             {
-                if(!agent.hasPath || agent.velocity.sqrMagnitude == 0)
-                {
-                    index++;
-                }
+                index++;
             }
         }
     }

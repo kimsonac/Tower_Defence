@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Waypoint
+  - Unvalid
+  - Valid
+  - Enemy
+  - Arrow
+  - Goal
   layers:
   - Default
   - TransparentFX
