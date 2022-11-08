@@ -43,6 +43,7 @@ public class TowerBuild : MonoBehaviour
             isBulit = true;
             towerLayout.SetActive(false);
             towerPrefab.SetActive(true);
+            GameManager.gameManager.GoldDeduction(5);
         }
         
     }

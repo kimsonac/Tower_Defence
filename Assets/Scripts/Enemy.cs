@@ -10,9 +10,11 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     private Vector3 next;
     private int index;
+    private int health;
 
     private void OnEnable()
     {
+        health = 5;
         agent = GetComponent<NavMeshAgent>();
         transform.position = startPosition.position;
     }
@@ -36,13 +38,20 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        // 목적지 도착이므로 사라짐
-        // 금화 --
+        gameObject.SetActive(false);
+        GameManager.gameManager.GoldDeduction(5);
     }
 
     private void OnParticleCollision(GameObject other)
     {
-        // 3번 닿으면 사라짐
-        // 금화
+        health -= 1;
+
+        if(health <= 0)
+        {
+            gameObject.SetActive(false);
+            GameManager.gameManager.GoldCollect(10);
+        }
+
+        
     }
 }

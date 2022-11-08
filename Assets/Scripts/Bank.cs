@@ -9,15 +9,24 @@ public class Bank : MonoBehaviour
 
     private void Awake()
     {
-        // GameManager 이벤트와 연결
         text = GetComponent<TextMeshProUGUI>();
     }
 
-    private void PrintScreen()
+    private void Start()
     {
-        // GameManager에서 정보 받아서 출력
-        text.text = "";
+        GameManager.gameManager.OnGoldChange += PrintScreen;
+    }
 
-        // 만약 넘어온 게 0원이면 게임오버 메시지 출력
+    public void PrintScreen(int gold)
+    {
+        if(gold <= 0)
+        {
+            text.text = "Game Over!";
+        }
+        else
+        {
+            text.text = string.Format("{00}", gold);
+        }
+
     }
 }

@@ -2417,7 +2417,7 @@ MonoBehaviour:
   - {fileID: 363587965}
   - {fileID: 874183414}
   - {fileID: 1358163690}
-  spawnSpeed: 10
+  spawnSpeed: 5
 --- !u!1001 &867680770
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3867,6 +3867,7 @@ GameObject:
   - component: {fileID: 1191484565}
   - component: {fileID: 1191484567}
   - component: {fileID: 1191484566}
+  - component: {fileID: 1191484568}
   m_Layer: 5
   m_Name: Cash
   m_TagString: Untagged
@@ -3990,6 +3991,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1191484564}
   m_CullTransparentMesh: 1
+--- !u!114 &1191484568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191484564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb717f7ef196dc04e87e8b056d8eb281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1203376465 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 373130270095289773, guid: 543075de02db741449c88b58b0115887, type: 3}
