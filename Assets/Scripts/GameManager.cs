@@ -7,7 +7,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
 
+    public event Action<bool> OnGameOver;
     public event Action<int> OnGoldChange;
+
+    [SerializeField] GameObject gameOverText;
     private int gold = 20;
 
     private void Awake()
@@ -38,7 +41,9 @@ public class GameManager : MonoBehaviour
 
         if(gold <= 0)
         {
-            // 게임 오버
+            OnGameOver(true);
+            gameOverText.SetActive(true);
+            Time.timeScale = 0;
         }
 
         ChangeGoldText();

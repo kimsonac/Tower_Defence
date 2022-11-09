@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private Transform startPosition;
     [SerializeField] private Transform[] destinations;
+    [SerializeField] private Text healthText;
+    [SerializeField] private GameObject spawn_VFX;
+   // [SerializeField] private GameObject success_VFX;
+    //[SerializeField] private GameObject fail_VFX;
+
     private NavMeshAgent agent;
     private Vector3 next;
     private int index;
@@ -14,11 +20,17 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
+        spawn_VFX.SetActive(true);
         health = 5;
+        healthText.text = string.Format("{0}", health);
         agent = GetComponent<NavMeshAgent>();
         transform.position = startPosition.position;
     }
 
+    private void OnDisable()
+    {
+        spawn_VFX.SetActive(false);
+    }
     private void Start()
     {
         StartCoroutine(_MoveToDestination());
@@ -39,6 +51,7 @@ public class Enemy : MonoBehaviour
         }
 
         gameObject.SetActive(false);
+       // Destroy(Instantiate(fail_VFX, transform.position, Quaternion.identity), 1f);
         GameManager.gameManager.GoldDeduction(5);
     }
 
@@ -48,10 +61,12 @@ public class Enemy : MonoBehaviour
 
         if(health <= 0)
         {
+         //   Destroy(Instantiate(success_VFX, transform.position, Quaternion.identity), 1f);
             gameObject.SetActive(false);
             GameManager.gameManager.GoldCollect(10);
+            healthText.text = "0";
         }
 
-        
+        healthText.text = string.Format("{0}", health);
     }
 }

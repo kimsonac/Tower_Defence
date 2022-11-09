@@ -21,7 +21,7 @@ public class Bank : MonoBehaviour
     {
         if(gold <= 0)
         {
-            text.text = "Game Over!";
+            text.text = "0";
         }
         else
         {

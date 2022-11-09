@@ -10,19 +10,40 @@ public class TowerBuild : MonoBehaviour
     [SerializeField] GameObject towerLayout;
 
     private bool isBulit = false;
+    private bool gameOver = false;
+
+    private void Start()
+    {
+        GameManager.gameManager.OnGameOver += CheckGameOver;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.gameManager.OnGameOver -= CheckGameOver;
+    }
+
+    private void CheckGameOver(bool state)
+    {
+        gameOver = state;
+    }
 
     private void OnMouseOver()
     {
-        if (gameObject.CompareTag("Valid") && !isBulit)
+        if (!gameOver)
         {
-            valid_Layout.SetActive(true);
-        }
+            if (gameObject.CompareTag("Valid") && !isBulit)
+            {
+                valid_Layout.SetActive(true);
+            }
 
-        if (gameObject.CompareTag("Unvalid") || isBulit)
-        {
-            unvalid_Layout.SetActive(true);
+            if (gameObject.CompareTag("Unvalid") || isBulit)
+            {
+                unvalid_Layout.SetActive(true);
+            }
+
+            towerLayout.SetActive(true);
         }
-        towerLayout.SetActive(true);
+        
     }
 
     private void OnMouseExit()
@@ -38,13 +59,15 @@ public class TowerBuild : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!isBulit && gameObject.CompareTag("Valid"))
+        if (!gameOver)
         {
-            isBulit = true;
-            towerLayout.SetActive(false);
-            towerPrefab.SetActive(true);
-            GameManager.gameManager.GoldDeduction(5);
+            if (!isBulit && gameObject.CompareTag("Valid"))
+            {
+                isBulit = true;
+                towerLayout.SetActive(false);
+                towerPrefab.SetActive(true);
+                GameManager.gameManager.GoldDeduction(5);
+            }
         }
-        
     }
 }
